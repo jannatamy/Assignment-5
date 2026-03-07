@@ -11,6 +11,8 @@ document.getElementById("login-btn").addEventListener("click", function() {
 
     if(userName=="admin" && pass=="admin123"){
         alert("Login Success");
+
+        window.location.assign("/home.html");
     }
     else{
         alert("Login Failed");
