@@ -17,6 +17,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
+    <style>
+        *{
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -24,7 +30,8 @@
 
     <div class="navbar bg-base-100 shadow-sm px-20">
         <div class="flex-1">
-            <a class="btn btn-ghost text-xl"><img class="w-9 h-[37px]" src="./assets/github-logo.png" alt=""> GitHub Issues Tracker</a>
+            <a href="home.html" class="flex items-center gap-1 font-semibold text-2xl">
+                <img class="w-9 h-[37px]" src="./assets/github-logo.png" alt=""> GitHub Issues Tracker</a>
         </div>
 
         <div class="flex gap-2">
@@ -34,10 +41,51 @@
             <div class="dropdown dropdown-end">
                 <button id="new-issue-btn" class="btn btn-primary w-full sm:w-auto"><i class="fa-solid fa-plus"></i> New Issue</button>
             </div>
+        </div>
     </div>
-</div>
+
+    <main>
 
 
+    <!-- issue section -->
+
+    <section class="max-w-7xl mx-auto md:mt-15 bg-white">
+        <div
+            class="md:flex space-y-5 md:space-y-0  justify-between items-center py-5 bg-white p-5  border border-gray-200 rounded-md shadow">
+            <div class="flex gap-3 items-center">
+                <div>
+                    <img src="./assets/Aperture.png" alt="">
+                </div>
+
+                <div>
+                    <h1 class="font-bold"><span id="totalCount">50</span> Issues </h1>
+                    <p class="text-gray-500">Track and manage your project issues</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-5">
+                <div class="flex items-center gap-1">
+
+                    <p class="p-2 rounded-full bg-green-800 inline-block"></p>
+                    <p>Open</p>
+
+                </div>
+
+                <div class="flex items-center gap-1">
+
+                    <p class="p-2 rounded-full bg-purple-900 inline-block"></p>
+                    <p>Closed</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+
+
+
+    <script src="./script/home.js"></script>
 
 </body>
 </html>
