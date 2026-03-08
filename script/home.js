@@ -135,4 +135,88 @@ const displayIssue = (issues) => {
 }
 
 
+// modal
+
+const loadModals = async (issueId) => {
+    try {
+        const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${issueId}`)
+        const data = await res.json()
+        displayModals(data.data);
+    } 
+    catch (error) {
+        console.log(error);
+    }
+    modal.showModal()
+}
+
+const displayModals = (issue) => {
+    const newDiv = document.createElement('div')
+    modal.innerHTML = ''
+
+    newDiv.innerHTML = ` 
+    <div class="modal-box max-w-3xl">
+            <div class="bg-white rounded-xl  w-full p-8 ">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2">Fix broken image uploads</h2>
+                <div class="flex items-center gap-3 mb-6">
+                    <span
+                        class=" text-white px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1
+                        ${issue.status === "open" ? 'bg-green-500' : 'bg-red-500'}
+                        
+                        ">
+                        ${issue.status}
+                    </span>
+                    <span class="text-slate-400 text-sm italic">
+                        ~ Opened by <span class="font-semibold text-slate-500"> ${issue.author} </span> ~ ${new Date(issue.createdAt).toLocaleDateString()}
+                    </span>
+                </div>
+
+                <div class="flex gap-2 mb-8">
+                    <p
+                        class=" border  px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1 
+                         ${issue.labels[0]?.toLowerCase() === 'enhancement' ? 'bg-green-50 text-green-500'
+            : 'bg-red-50 text-red-500'
+        }
+                        ">
+                        ${issue.labels[0]}
+                    </p>
+                    
+                    <span
+                        class="bg-amber-50 text-amber-500 border border-amber-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1
+                        ${issue.labels[1]?.toLowerCase() === 'enhancement' ? 'bg-green-50 text-green-500'
+            : 'bg-orange-50 text-orange-600'}  
+                        ">
+                       ${issue.labels[1] === undefined ? '-' : issue.labels[1]}
+                    </span>
+                </div>
+
+                <p class="text-slate-500 text-lg leading-relaxed mb-10">
+                   ${issue.description}
+                </p>
+
+                <div class="bg-slate-50 rounded-xl p-6 flex justify-between items-center mb-10">
+                    <div>
+                        <p class="text-slate-400 text-sm mb-1">Assignee: </p>
+                        <p class="text-slate-800 font-bold text-lg">${issue.author}</p>
+                    </div>
+                    <div class="text-center ">
+                        <p class="text-slate-400 text-sm mb-1">Priority:</p>
+                        <p class=" mt-1 px-5 py-1.5 rounded-sm text-sm font-bold
+                         ${issue.priority === "high" ? 'bg-red-100 text-red-600' : 'text-[#e08f03] bg-amber-100'}
+                        ">
+                           ${issue.priority}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+           <form method="dialog" class="text-right">
+    <button class="btn btn-primary">Close</button>
+</form>
+        </div>
+    
+    `
+    modal.append(newDiv)
+}
+
 
