@@ -42,7 +42,8 @@ const loadAllIssue = async () => {
         const data = await res.json()
         allIssues = data.data
         displayIssue(allIssues);
-    } catch (error) {
+    }
+    catch (error) {
         console.log(error);
     }
     console.log(allIssues.length);
@@ -53,7 +54,8 @@ loadAllIssue()
 const filteredIssuesByStatus = (status) => {
     if (status === 'all') {
         displayIssue(allIssues)
-    } else {
+    }
+    else {
         const filteredIssues = allIssues.filter(issue => issue.status === status)
         displayIssue(filteredIssues)
     }
@@ -66,7 +68,8 @@ const counter = (status) => {
     let count = 0
     if (status === 'all') {
         count = allIssues.length
-    } else {
+    }
+    else {
         count = allIssues.filter(issue => issue.status === status).length
     }
     totalCount.innerText = count
